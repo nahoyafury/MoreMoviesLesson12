@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_RATING = "rating";
 
     public DBHelper(Context context) {super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     @Override
@@ -39,6 +41,21 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOVIE);
         onCreate(db);
+    }
+
+    public long insertMovie(String title, String genre, int year, String rating) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_TITLE, title);
+        values.put(COLUMN_GENRE, genre);
+        values.put(COLUMN_YEAR, year);
+        values.put(COLUMN_RATING, rating);
+
+        long result = db.insert(TABLE_MOVIE, null, values);
+        db.close();
+        Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1
+        return result;
     }
 
     public ArrayList<Movie> getAllMovies() {
