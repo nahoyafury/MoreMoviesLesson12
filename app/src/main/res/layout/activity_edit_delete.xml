@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tvID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movie ID" />
+        android:text="Movie ID"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tvMovieID"
@@ -22,63 +21,69 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/movie_title" />
+        android:text="@string/movie_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/tvGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Genre" />
+        android:text="Genre"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/etGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/tvyear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Year" />
+        android:text="Year"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/etyear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/tvrating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rating" />
+        android:text="Rating"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
 
     <Spinner
         android:id="@+id/spinRating"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:entries="@array/movieRatings"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
-            android:layout_margin="5dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="UPDATE" />
 
@@ -86,19 +91,14 @@
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_margin="5dp"
             android:layout_weight="1"
             android:text="DELETE" />
-
     </LinearLayout>
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_margin="5dp"
         android:text="CANCEL" />
 
 </LinearLayout>
