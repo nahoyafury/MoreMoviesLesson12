@@ -18,7 +18,7 @@ public class EditDeleteActivity extends AppCompatActivity {
     Spinner spinRating;
     Button btnUpdate, btnDelete, btnCancel;
     Movie data;
-
+//wrfegtrhyjuyiko
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
