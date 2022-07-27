@@ -60,7 +60,9 @@
     <Spinner
         android:id="@+id/spinRating"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:entries="@array/movieRatings"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
