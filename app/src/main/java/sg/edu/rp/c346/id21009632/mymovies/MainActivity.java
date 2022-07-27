@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         etTitle = findViewById(R.id.etTitle);
         etGenre = findViewById(R.id.etGenre);
+        etYear = findViewById(R.id.etYear);
         btnInsert = findViewById(R.id.btnInsert);
         btnShow = findViewById(R.id.btnShow);
         spinRating = findViewById(R.id.spinRating);
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 DBHelper dbh = new DBHelper(MainActivity.this);
-                long inserted_id = dbh.insertSong(songTitle, singer, year, stars);
+                long inserted_id = dbh.insertMovie(etTitle, etGenre, year, spinRating);
 
                 if (inserted_id != -1) {
                     Toast.makeText(MainActivity.this, "Added " + movieTitle + " to the movie list successfully!", Toast.LENGTH_LONG).show();
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     etTitle.setText("");
                     etGenre.setText("");
                     etYear.setText("");
-                    rgStars.clearCheck();
+
                 }
             }
         });
