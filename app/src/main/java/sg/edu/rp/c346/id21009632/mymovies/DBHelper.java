@@ -2,10 +2,12 @@ package sg.edu.rp.c346.id21009632.mymovies;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
+import java.util.ArrayList;
+
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -38,6 +40,29 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public ArrayList<Movie> getAllMovies() {
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        String[] columns = {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE, COLUMN_YEAR, COLUMN_RATING};
+        Cursor cursor = db.query(TABLE_MOVIE, columns,  null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String genre = cursor.getString(2);
+                int year = cursor.getInt(3);
+                String rating = cursor.getString(4);
+
+                Movie movie = new Movie(id, title, genre, year, rating);
+                movies.add(movie);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return movies;
+    }
 }
 
