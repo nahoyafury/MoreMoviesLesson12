@@ -29,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createNoteTableSql = "CREATE TABLE " + TABLE_MOVIE + "("
-                + COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_TITLE + " TEXT, "
                 + COLUMN_GENRE + " TEXT, "
                 + COLUMN_YEAR + " INTEGER, "
