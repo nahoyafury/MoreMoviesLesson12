@@ -11,16 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 public class EditDeleteActivity extends AppCompatActivity {
     TextView tvTitle, tvMovieID, tvyear, tvGenre, tvrating, tvID;
-    EditText etTitlee, etGenree, etyearr;
+    EditText etTitle, etGenre, etyear;
     Spinner spinRating;
     Button btnUpdate, btnDelete, btnCancel;
     Movie data;
 
-    //wrfegtrhyjuyiko
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,20 +38,18 @@ public class EditDeleteActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvyear = findViewById(R.id.tvyear);
         tvGenre = findViewById(R.id.tvGenre);
-        etTitlee = findViewById(R.id.etTitlee);
-        etGenree = findViewById(R.id.etGenree);
-        etyearr = findViewById(R.id.etyearr);
+        etTitle = findViewById(R.id.etTitle);
+        etGenre = findViewById(R.id.etGenre);
+        etyear = findViewById(R.id.etyear);
         spinRating = findViewById(R.id.spinRating);
-
-        //initialize the variables with UI here
 
         Intent i = getIntent();
         data = (Movie) i.getSerializableExtra("data");
         tvID.setText("Movie ID : " + '\n' + data.getId() + "");
 
-        etTitlee.setText(data.getTitle());
-        etGenree.setText(data.getGenre());
-        etyearr.setText(data.getYear() + "");
+        etTitle.setText(data.getTitle());
+        etGenre.setText(data.getGenre());
+        etyear.setText(data.getYear() + "");
 
         if (data.getRating().equals("G")) {
             int position = 0;
@@ -76,23 +76,36 @@ public class EditDeleteActivity extends AppCompatActivity {
             spinRating.setSelection(position);
         }
 
-
-
-
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(EditDeleteActivity.this);
-                data.setTitle(etTitlee.getText().toString());
-                data.setGenre(etGenree.getText().toString());
-                data.setYear(Integer.parseInt(etyearr.getText().toString()));
-                data.setRating(spinRating.getSelectedItem().toString());
 
-                dbh.updateMovie(data);
-                dbh.close();
-                finish();
+                if ((!etTitle.getText().toString().equals("")) && (!etGenre.getText().toString().equals("")) && (!etyear.getText().toString().equals(""))) {
+                    data.setTitle(etTitle.getText().toString());
+                    data.setGenre(etGenre.getText().toString());
+                    data.setYear(Integer.parseInt(etyear.getText().toString()));
+                    data.setRating(spinRating.getSelectedItem().toString());
+
+                    int year = Integer.parseInt(etyear.getText().toString());
+                    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+                    if (year >= 1888 && year <= currentYear) {
+                        dbh.updateMovie(data);
+                        dbh.close();
+                        finish();
+
+                        Toast.makeText(EditDeleteActivity.this, data.getTitle() + " has been updated!", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(EditDeleteActivity.this, "Please enter a year after 1888 and before the current year", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(EditDeleteActivity.this, "Please fill in all fields in the form correctly", Toast.LENGTH_LONG).show();
+                }
             }
         });
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
