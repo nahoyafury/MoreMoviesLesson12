@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movie" />
+        android:text="Movie"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="Enter movie title here"
         android:inputType="textPersonName" />
 
@@ -25,13 +25,14 @@
         android:id="@+id/tvGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Genre" />
+        android:text="Genre"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/etGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="Enter year of release here"
         android:inputType="textPersonName" />
 
@@ -39,13 +40,14 @@
         android:id="@+id/tvYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Year" />
+        android:text="Year"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/etYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="Enter year of release here"
         android:inputType="textPersonName" />
 
@@ -53,7 +55,9 @@
         android:id="@+id/tvRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"/>
 
     <Spinner
         android:id="@+id/spinRating"
