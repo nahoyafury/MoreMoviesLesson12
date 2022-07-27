@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
                 DBHelper dbh = new DBHelper(MainActivity.this);
                 long inserted_id = dbh.insertMovie(movieTitle, genre, year, rating);
-
+//random comment
                 if (inserted_id != -1) {
                     Toast.makeText(MainActivity.this, "Added " + movieTitle + " to the movie list successfully!", Toast.LENGTH_LONG).show();
 
