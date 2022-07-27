@@ -27,21 +27,6 @@ public class MainActivity extends AppCompatActivity {
         btnShow = findViewById(R.id.btnShow);
         spinRating = findViewById(R.id.spinRating);
 
-        spinRating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                String rating = spinRating.getSelectedItem().toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-
-
-        });
-
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 String genre = etGenre.getText().toString();
                 int year = Integer.parseInt(etYear.getText().toString());
                 String rating = spinRating.getSelectedItem().toString();
-
 
                 DBHelper dbh = new DBHelper(MainActivity.this);
                 long inserted_id = dbh.insertMovie(movieTitle, genre, year, rating);
@@ -61,11 +45,8 @@ public class MainActivity extends AppCompatActivity {
                     etTitle.setText("");
                     etGenre.setText("");
                     etYear.setText("");
-
                 }
             }
         });
-
-
     }
 }
