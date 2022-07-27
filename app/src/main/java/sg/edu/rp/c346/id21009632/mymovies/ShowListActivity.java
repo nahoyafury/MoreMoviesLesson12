@@ -16,8 +16,7 @@ public class ShowListActivity extends AppCompatActivity {
     Button btnPG13Movies;
     ListView lvMovies;
     ArrayList<Movie> alMovie;
-    ArrayAdapter<Movie> aaMovie;
-    //CustomAdapter caMovie;
+    CustomAdapter caMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +27,17 @@ public class ShowListActivity extends AppCompatActivity {
         lvMovies = findViewById(R.id.listViewMovie);
 
         alMovie = new ArrayList<Movie>();
-        aaMovie = new ArrayAdapter<Movie>(this, android.R.layout.simple_list_item_1, alMovie);
+        caMovie = new CustomAdapter(this, R.layout.row, alMovie);
 
-        lvMovies.setAdapter(aaMovie);
+        lvMovies.setAdapter(caMovie);
 
         btnPG13Movies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(ShowListActivity.this);
                 alMovie.clear();
-                // alMovie.addAll(dbh.getAllPG13Movies());
-                aaMovie.notifyDataSetChanged();
+                alMovie.addAll(dbh.getAllPG13Movies());
+                caMovie.notifyDataSetChanged();
                 Toast.makeText(ShowListActivity.this, "Displaying all PG 13 Movies", Toast.LENGTH_LONG).show();
             }
         });
@@ -50,7 +49,7 @@ public class ShowListActivity extends AppCompatActivity {
 
         DBHelper dbh = new DBHelper(ShowListActivity.this);
         alMovie.clear();
-        //alMovie.addAll(dbh.getAllMovies());
-        aaMovie.notifyDataSetChanged();
+        alMovie.addAll(dbh.getAllMovies());
+        caMovie.notifyDataSetChanged();
     }
 }
