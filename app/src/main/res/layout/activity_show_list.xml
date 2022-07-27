@@ -10,7 +10,7 @@
         android:id="@+id/btnPG13Movies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/show_all_pg_13_movies" />
 
     <ListView
         android:id="@+id/listViewMovie"
