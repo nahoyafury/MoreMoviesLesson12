@@ -52,7 +52,7 @@ public class EditDeleteActivity extends AppCompatActivity {
                 data.setTitle(etTitle.getText().toString());
                 data.setGenre(etGenre.getText().toString());
                 data.setYear(Integer.parseInt(etyear.getText().toString()));
-//                data.setRating(spinRating.getText().toString());
+                data.setRating(spinRating.getSelectedItem().toString());
 
                 dbh.updateMovie(data);
                 dbh.close();
@@ -64,7 +64,7 @@ public class EditDeleteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(EditDeleteActivity.this);
                 int id = data.getId();
-                Log.d("song id: ", id + "");
+                Log.d("Movie id: ", id + "");
 
                 dbh.deleteMovie(data.getId());
                 finish();
