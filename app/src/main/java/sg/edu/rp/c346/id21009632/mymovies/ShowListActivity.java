@@ -2,8 +2,11 @@ package sg.edu.rp.c346.id21009632.mymovies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -39,6 +42,16 @@ public class ShowListActivity extends AppCompatActivity {
                 alMovie.addAll(dbh.getAllPG13Movies());
                 caMovie.notifyDataSetChanged();
                 Toast.makeText(ShowListActivity.this, "Displaying all PG 13 Movies", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        lvMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long identity) {
+                Movie data = alMovie.get(position);
+                Intent i = new Intent(ShowListActivity.this, EditDeleteActivity.class);
+                i.putExtra("data", (Parcelable) data);
+                startActivity(i);
             }
         });
     }

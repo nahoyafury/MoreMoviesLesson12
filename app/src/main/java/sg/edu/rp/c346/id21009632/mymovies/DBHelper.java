@@ -89,7 +89,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         String[] columns = {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE, COLUMN_YEAR, COLUMN_RATING};
         String condition = COLUMN_RATING + " Like ?";
-        String[] args = {"%" + "test" + "%"};
+        String[] args = {"%" + "PG13" + "%"};
         Cursor cursor = db.query(TABLE_MOVIE, columns,  condition, args,null, null, null, null);
 
         if (cursor.moveToFirst()) {
