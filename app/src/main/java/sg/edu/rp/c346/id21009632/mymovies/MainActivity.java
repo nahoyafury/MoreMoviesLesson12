@@ -27,6 +27,21 @@ public class MainActivity extends AppCompatActivity {
         btnShow = findViewById(R.id.btnShow);
         spinRating = findViewById(R.id.spinRating);
 
+        spinRating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String rating = spinRating.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+
+        });
+
         btnInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 String movieTitle = etTitle.getText().toString();
                 String genre = etGenre.getText().toString();
                 int year = Integer.parseInt(etYear.getText().toString());
+                String rating = spinRating.getSelectedItem().toString();
 
 
                 DBHelper dbh = new DBHelper(MainActivity.this);
@@ -50,19 +66,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        spinRating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String rating = spinRating.getSelectedItem().toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-
-
-        });
     }
 }

@@ -45,19 +45,19 @@ public class CustomAdapter extends ArrayAdapter {
         tvGenre.setText(currentVersion.getGenre());
         tvYear.setText(currentVersion.getYear() + "");
 
-        if (currentVersion.getRating() == "g") {
+        if (currentVersion.getRating() == "G") {
             ivRating.setImageResource(R.drawable.rating_g);
 
-        } else if (currentVersion.getRating() == "m18") {
+        } else if (currentVersion.getRating() == "M18") {
             ivRating.setImageResource(R.drawable.rating_m18);
 
-        } else if (currentVersion.getRating() == "nc16") {
+        } else if (currentVersion.getRating() == "NC16") {
             ivRating.setImageResource(R.drawable.rating_nc16);
 
-        } else if (currentVersion.getRating() == "pg") {
+        } else if (currentVersion.getRating() == "PG") {
             ivRating.setImageResource(R.drawable.rating_pg);
 
-        } else if (currentVersion.getRating() == "pg13") {
+        } else if (currentVersion.getRating() == "PG13") {
             ivRating.setImageResource(R.drawable.rating_pg13);
 
         } else {
