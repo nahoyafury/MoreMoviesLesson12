@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText etTitle, etYear, etGenre;
@@ -32,20 +34,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String movieTitle = etTitle.getText().toString();
-                String genre = etGenre.getText().toString();
-                int year = Integer.parseInt(etYear.getText().toString());
-                String rating = spinRating.getSelectedItem().toString();
+                if ((!etTitle.getText().toString().equals("")) && (!etGenre.getText().toString().equals("")) && (!etYear.getText().toString().equals(""))) {
+                    String movieTitle = etTitle.getText().toString();
+                    String genre = etGenre.getText().toString();
+                    int year = Integer.parseInt(etYear.getText().toString());
+                    String rating = spinRating.getSelectedItem().toString();
 
-                DBHelper dbh = new DBHelper(MainActivity.this);
-                long inserted_id = dbh.insertMovie(movieTitle, genre, year, rating);
+                    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
-                if (inserted_id != -1) {
-                    Toast.makeText(MainActivity.this, "Added " + movieTitle + " to the movie list successfully!", Toast.LENGTH_LONG).show();
+                    DBHelper dbh = new DBHelper(MainActivity.this);
+                    long inserted_id = dbh.insertMovie(movieTitle, genre, year, rating);
 
-                    etTitle.setText("");
-                    etGenre.setText("");
-                    etYear.setText("");
+                    if (year >= 1888 && year <= currentYear) { // 1888 is the year of the oldest film - google
+                        if (inserted_id != -1) {
+                            Toast.makeText(MainActivity.this, "Added " + movieTitle + " to the movie list successfully!", Toast.LENGTH_LONG).show();
+
+                            etTitle.setText("");
+                            etGenre.setText("");
+                            etYear.setText("");
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, "Please enter a year after 1888 and before the current year", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Please fill in all fields in the form correctly", Toast.LENGTH_LONG).show();
                 }
             }
         });
