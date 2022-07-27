@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,7 +20,10 @@ public class ShowListActivity extends AppCompatActivity {
     Button btnPG13Movies;
     ListView lvMovies;
     ArrayList<Movie> alMovie;
+    ArrayList<String> alRating;
+    ArrayAdapter<String> aaRating;
     CustomAdapter caMovie;
+    Spinner spinnerRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,11 @@ public class ShowListActivity extends AppCompatActivity {
 
         btnPG13Movies = findViewById(R.id.btnPG13Movies);
         lvMovies = findViewById(R.id.listViewMovie);
+        spinnerRating = findViewById(R.id.spinnerRating);
+
+        alRating = new ArrayList<String>();
+        aaRating = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, alRating);
+        spinnerRating.setAdapter(aaRating);
 
         alMovie = new ArrayList<Movie>();
         caMovie = new CustomAdapter(this, R.layout.row, alMovie);
@@ -42,6 +51,35 @@ public class ShowListActivity extends AppCompatActivity {
                 alMovie.addAll(dbh.getAllPG13Movies());
                 caMovie.notifyDataSetChanged();
                 Toast.makeText(ShowListActivity.this, "Displaying all PG 13 Movies", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        spinnerRating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                DBHelper dbh = new DBHelper(ShowListActivity.this);
+                String rating = spinnerRating.getSelectedItem().toString();
+
+                if (rating != "Please select a rating") {
+                    alMovie.clear();
+                    alMovie.addAll(dbh.getAllMoviesByRating(rating));
+                    caMovie.notifyDataSetChanged();
+
+                    alMovie.clear();
+                    alMovie.addAll(dbh.getAllMoviesByRating(rating));
+                    caMovie.notifyDataSetChanged();
+
+                    Toast.makeText(ShowListActivity.this, "Displaying all songs rated " + rating, Toast.LENGTH_SHORT).show();
+                } else {
+                    alMovie.clear();
+                    alMovie.addAll(dbh.getAllMovies());
+                    caMovie.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
@@ -64,5 +102,11 @@ public class ShowListActivity extends AppCompatActivity {
         alMovie.clear();
         alMovie.addAll(dbh.getAllMovies());
         caMovie.notifyDataSetChanged();
+
+        alRating.clear();
+        alRating.add("Please select a rating");
+        alRating.addAll(dbh.getAllMoviesByRating());
+        aaRating.notifyDataSetChanged();
     }
+
 }
