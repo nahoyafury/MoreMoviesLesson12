@@ -55,7 +55,7 @@
         android:id="@+id/tvRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Rating"
         android:layout_marginTop="10dp"
         android:textStyle="bold"/>
 
@@ -67,14 +67,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <Button
             android:id="@+id/btnInsert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Insert" />
+            android:text="Insert"
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:id="@+id/btnShow"
