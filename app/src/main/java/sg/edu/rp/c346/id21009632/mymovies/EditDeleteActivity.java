@@ -42,7 +42,7 @@ public class EditDeleteActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         data = (Movie) i.getSerializableExtra("data");
-        tvID.setText("Song ID : " + data.getId() + "");
+        tvID.setText("Movie ID : " + data.getId() + "");
 
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
