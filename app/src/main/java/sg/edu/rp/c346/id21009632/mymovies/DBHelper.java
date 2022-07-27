@@ -1,6 +1,7 @@
 package sg.edu.rp.c346.id21009632.mymovies;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
