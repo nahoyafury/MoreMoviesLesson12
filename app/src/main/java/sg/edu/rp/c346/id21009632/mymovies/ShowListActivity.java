@@ -50,7 +50,7 @@ public class ShowListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long identity) {
                 Movie data = alMovie.get(position);
                 Intent i = new Intent(ShowListActivity.this, EditDeleteActivity.class);
-                i.putExtra("data", (Parcelable) data);
+                i.putExtra("data", data);
                 startActivity(i);
             }
         });
