@@ -1,7 +1,9 @@
 package sg.edu.rp.c346.id21009632.mymovies;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -109,12 +111,29 @@ public class EditDeleteActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper dbh = new DBHelper(EditDeleteActivity.this);
-                int id = data.getId();
-                Log.d("Movie id: ", id + "");
 
-                dbh.deleteMovie(data.getId());
-                finish();
+                AlertDialog.Builder myBuilder = new AlertDialog.Builder(EditDeleteActivity.this);
+                myBuilder.setTitle("Danger");
+                myBuilder.setMessage("Are you sure you want to delete the movie " + data.getTitle());
+                myBuilder.setCancelable(false);
+
+                myBuilder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DBHelper dbh = new DBHelper(EditDeleteActivity.this);
+                        int id = data.getId();
+                        Log.d("Movie id: ", id + "");
+
+
+
+                        dbh.deleteMovie(data.getId());
+                        finish();
+
+                    }
+                });
+                myBuilder.setPositiveButton("Cancel", null);
+                AlertDialog myDialog = myBuilder.create();
+                myDialog.show();
 
             }
         });
